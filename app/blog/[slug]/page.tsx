@@ -1,7 +1,6 @@
-import React from "react";
-import Image from "next/image";
 import { Container } from "@/components/ui";
 import BlogSidebar from "@/components/widgets/BlogSidebar";
+import { Banner } from "@/components";
 
 const page = () => {
   const blogDetails = {
@@ -24,11 +23,7 @@ Integer commodo feugiat nulla ut maximus. Proin tincidunt ut mi et dictum. Maece
   return (
     <main className="pb-12 sm:pb-16 lg:pb-24">
       {/* Hero Image */}
-      <div className="w-full h-[400px] sm:h-[500px] lg:h-[600px] mb-12 sm:mb-16 lg:mb-20">
-        <div className="relative w-full h-full">
-          <Image src={blogDetails.image} alt={blogDetails.title} fill className="object-cover" priority />
-        </div>
-      </div>
+      <Banner image={blogDetails.image} title={blogDetails.title} />
 
       {/* Content Grid */}
       <Container>

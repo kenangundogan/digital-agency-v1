@@ -16,4 +16,6 @@ export { default as Skills } from "./Skills";
 export { default as TeamMember1 } from "./team/type1";
 export { default as TeamMember2 } from "./team/type2";
 export { default as TeamMemberDetail } from "./team/memberDetail";
-
+export { default as Banner } from "./Banner";
+export { default as FaqType1 } from "./faq/type1";
+export { default as FaqType2 } from "./faq/type2";

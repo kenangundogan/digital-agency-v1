@@ -63,7 +63,7 @@ const Testimonials: React.FC<TestimonialsProps> = ({ testimonials = defaultTesti
                     md:before:w-full md:before:h-full md:before:bg-gray-50 before:-z-10 
                     pl-0 md:p-6 lg:p-10 lg:pl-0!"
                 >
-                  <img src={testimonial.image} alt={testimonial.name} className="w-full h-64 sm:h-80 lg:h-auto lg:w-80 xl:w-96 object-cover" />
+                  <img src={testimonial.image} alt={testimonial.name} className="w-full" />
                 </div>
 
                 {/* Content */}

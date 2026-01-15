@@ -62,22 +62,34 @@ const Skills: React.FC<SkillsProps> = ({ title = "Digital", subtitle = "Services
             </h2>
           </div>
 
-          {/* Skills Grid */}
-          <div className="grid grid-cols-3 gap-4 sm:gap-6 md:gap-8 lg:gap-6 xl:gap-8">
-            {skills.length >= 1 && (
-              <div className="flex flex-col items-center justify-between gap-8 sm:gap-12 md:gap-16 lg:gap-20 xl:gap-24">
-                <CircularProgress percentage={skills[0].percentage} label={skills[0].label} />
-                {skills.length >= 2 && <CircularProgress percentage={skills[1].percentage} label={skills[1].label} />}
-              </div>
-            )}
+          {/* Skills Grid - Mobile First Responsive Design */}
+          <div className="w-full">
+            {/* Mobile: Single column layout */}
+            <div className="flex flex-col sm:hidden gap-6">
+              {skills.map((skill, index) => (
+                <div key={index} className="flex justify-center">
+                  <CircularProgress percentage={skill.percentage} label={skill.label} />
+                </div>
+              ))}
+            </div>
 
-            {skills.length >= 3 && (
-              <div className="flex flex-col items-center justify-center">
-                <CircularProgress percentage={skills[2].percentage} label={skills[2].label} />
-              </div>
-            )}
+            {/* Tablet and up: Original grid layout */}
+            <div className="hidden sm:grid grid-cols-3 gap-4 sm:gap-6 md:gap-8 lg:gap-6 xl:gap-8">
+              {skills.length >= 1 && (
+                <div className="flex flex-col items-center justify-between gap-8 sm:gap-12 md:gap-16 lg:gap-20 xl:gap-24">
+                  <CircularProgress percentage={skills[0].percentage} label={skills[0].label} />
+                  {skills.length >= 2 && <CircularProgress percentage={skills[1].percentage} label={skills[1].label} />}
+                </div>
+              )}
 
-            <div className="hidden sm:block" />
+              {skills.length >= 3 && (
+                <div className="flex flex-col items-center justify-center">
+                  <CircularProgress percentage={skills[2].percentage} label={skills[2].label} />
+                </div>
+              )}
+
+              <div className="hidden sm:block" />
+            </div>
           </div>
         </div>
       </Container>

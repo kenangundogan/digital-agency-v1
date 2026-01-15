@@ -1,13 +1,17 @@
+"use client";
+
 import React from "react";
 import { Facebook, Twitter, Instagram, Youtube, Linkedin, X } from "lucide-react";
 import { SocialLink } from "@/types";
 import { cn } from "@/lib/utils";
+import Link from "next/link";
 
 interface SocialLinksProps {
   links: SocialLink[];
   variant?: "light" | "dark";
   size?: "sm" | "md" | "lg";
   className?: string;
+  stopPropagation?: boolean; // Nested link durumunda event propagation'ı durdurmak için
 }
 
 const sizeClasses = {
@@ -47,18 +51,50 @@ const iconMap = {
  * Reusable social links component
  * Displays social media icons with links
  */
-const SocialLinks: React.FC<SocialLinksProps> = ({ links, variant = "dark", size = "md", className }) => {
+const SocialLinks: React.FC<SocialLinksProps> = ({ links, variant = "dark", size = "md", className, stopPropagation = false }) => {
   const sizeStyles = sizeClasses[size];
   const variantStyles = variantClasses[variant];
+
+  const handleClick = (e: React.MouseEvent, href: string) => {
+    if (stopPropagation) {
+      e.stopPropagation();
+      e.preventDefault();
+      window.open(href, "_blank", "noopener,noreferrer");
+    }
+  };
 
   return (
     <div className={cn("flex items-center gap-3", className)}>
       {links.map((link, index) => {
         const IconComponent = iconMap[link.platform];
+        
+        // Nested link durumunda button kullan
+        if (stopPropagation) {
+          return (
+            <button
+              key={index}
+              onClick={(e) => handleClick(e, link.href)}
+              className={cn("rounded-full flex items-center justify-center transition-colors duration-300", sizeStyles.container, variantStyles.container)}
+              aria-label={link.ariaLabel || `Follow us on ${link.platform}`}
+              type="button"
+            >
+              <IconComponent className={sizeStyles.icon} />
+            </button>
+          );
+        }
+        
+        // Normal durumda Link kullan
         return (
-          <a key={index} href={link.href} className={cn("rounded-full flex items-center justify-center transition-colors duration-300", sizeStyles.container, variantStyles.container)} aria-label={link.ariaLabel || `Follow us on ${link.platform}`} target="_blank" rel="noopener noreferrer">
+          <Link
+            key={index}
+            href={link.href}
+            className={cn("rounded-full flex items-center justify-center transition-colors duration-300", sizeStyles.container, variantStyles.container)}
+            aria-label={link.ariaLabel || `Follow us on ${link.platform}`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <IconComponent className={sizeStyles.icon} />
-          </a>
+          </Link>
         );
       })}
     </div>

@@ -9,7 +9,7 @@ export { default as About } from "../widgets/about/type1";
 export { default as BestServices } from "../widgets/services/type1";
 export { default as Blog } from "./Blog";
 export { default as ContactUs } from "./ContactUs";
-export { default as Faq } from "./Faq";
+export { default as Faq } from "../widgets/faq/type1";
 export { default as Member } from "../widgets/team/type1";
 export { default as Partners } from "./Partners";
 export { default as Portfolio } from "./Portfolio";
