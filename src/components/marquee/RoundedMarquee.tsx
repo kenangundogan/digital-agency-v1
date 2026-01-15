@@ -33,7 +33,7 @@ const RoundedMarquee: React.FC<RoundedMarqueeProps> = ({ title = "Digital", titl
   const defaultIcon = <ChevronDown className={cn(sizeStyle.icon, "text-white")} />;
 
   return (
-    <div className={cn("absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10", sizeStyle.container)}>
+    <div className={cn("absolute right-0 bottom-10 md:-bottom-24 md:left-1/2 md:-translate-x-1/2 z-10", sizeStyle.container)}>
       {/* Circle Background */}
       <div className="absolute inset-0 bg-white border border-gray-200 rounded-full" />
 

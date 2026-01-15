@@ -96,7 +96,7 @@ const TeamMember2: React.FC<TeamProps> = ({ category = "Our Team", title = "Meet
                   <ul className="flex gap-2 sm:gap-3 lg:gap-4">
                     {member.socialLinks.map((social, socialIndex) => (
                       <li key={socialIndex} className="opacity-0 group-hover:opacity-100 transition-all duration-300" style={{ transitionDelay: `${socialIndex * 50}ms` }}>
-                        <SocialLinks links={[social]} size="sm" variant="light" />
+                        <SocialLinks links={[social]} size="sm" variant="light" stopPropagation />
                       </li>
                     ))}
                   </ul>
